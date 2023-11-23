@@ -3,6 +3,12 @@
 namespace Obelaw\UI;
 
 use Illuminate\Support\ServiceProvider;
+use Obelaw\UI\Components\Fields\CheckboxField;
+use Obelaw\UI\Components\Fields\DateField;
+use Obelaw\UI\Components\Fields\SelectField;
+use Obelaw\UI\Components\Fields\TextareaField;
+use Obelaw\UI\Components\Fields\TextField;
+use Obelaw\UI\Components\FormComponent;
 use Obelaw\UI\Views\Layout\DashboardLayout;
 
 class ObelawUIServiceProvider extends ServiceProvider
@@ -32,11 +38,11 @@ class ObelawUIServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../resources/views' => resource_path('views/vendor/obelaw-ui'),
-            ]);
+            ], ['obelaw:ui', 'obelaw:ui:views']);
 
             $this->publishes([
                 __DIR__ . '/../resources/assets' => public_path('vendor/obelaw'),
-            ], 'obelaw-ui:assets');
+            ], ['obelaw:ui', 'obelaw:ui:assets']);
         }
     }
 
@@ -44,6 +50,15 @@ class ObelawUIServiceProvider extends ServiceProvider
     {
         return [
             DashboardLayout::class,
+
+            // Form
+            FormComponent::class,
+            // Fields
+            TextField::class,
+            SelectField::class,
+            TextareaField::class,
+            DateField::class,
+            CheckboxField::class,
         ];
     }
 }
