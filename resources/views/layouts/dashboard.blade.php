@@ -375,7 +375,7 @@
                                     </a>
                                 </li>
 
-                                <x-obelaw-navbar-builder />
+                                <x-obelaw-menu-component />
                             </ul>
                         </div>
                     </div>

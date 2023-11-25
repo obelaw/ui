@@ -2,6 +2,7 @@
 
 namespace Obelaw\UI;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Obelaw\UI\Components\Fields\CheckboxField;
 use Obelaw\UI\Components\Fields\DateField;
@@ -9,6 +10,8 @@ use Obelaw\UI\Components\Fields\SelectField;
 use Obelaw\UI\Components\Fields\TextareaField;
 use Obelaw\UI\Components\Fields\TextField;
 use Obelaw\UI\Components\FormComponent;
+use Obelaw\UI\Components\MenuComponent;
+use Obelaw\UI\Pipeline\Identifier\Http\Middleware\IdentifierMiddleware;
 use Obelaw\UI\Views\Layout\DashboardLayout;
 
 class ObelawUIServiceProvider extends ServiceProvider
@@ -29,8 +32,10 @@ class ObelawUIServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
+        $router->aliasMiddleware('obelawIdentifier', IdentifierMiddleware::class);
+
         $this->loadViewComponentsAs('obelaw', $this->viewComponents());
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'obelaw-ui');
@@ -50,6 +55,8 @@ class ObelawUIServiceProvider extends ServiceProvider
     {
         return [
             DashboardLayout::class,
+
+            MenuComponent::class,
 
             // Form
             FormComponent::class,
