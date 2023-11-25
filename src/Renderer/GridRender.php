@@ -8,8 +8,8 @@ use Livewire\WithPagination;
 use Obelaw\Facades\Bundles;
 use Obelaw\Framework\ACL\Attributes\PermissionDelete;
 use Obelaw\Framework\ACL\Permission;
-use Obelaw\Framework\ACL\Traits\BootPermission;
-use Obelaw\Framework\Builder\Grid;
+use Obelaw\UI\Permissions\Traits\BootPermission;
+use Obelaw\UI\Renderer\Grid\Grid;
 use Obelaw\UI\Views\Layout\DashboardLayout;
 use ReflectionMethod;
 

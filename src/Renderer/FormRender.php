@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Obelaw\Facades\Bundles;
-use Obelaw\Framework\ACL\Traits\BootPermission;
+use Obelaw\UI\Permissions\Traits\BootPermission;
 use Obelaw\UI\Views\Layout\DashboardLayout;
 
 abstract class FormRender extends Component
