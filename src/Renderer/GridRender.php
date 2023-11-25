@@ -6,8 +6,8 @@ use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Obelaw\Facades\Bundles;
-use Obelaw\Framework\ACL\Attributes\PermissionDelete;
 use Obelaw\Framework\ACL\Permission;
+use Obelaw\UI\Permissions\Access;
 use Obelaw\UI\Permissions\Traits\BootPermission;
 use Obelaw\UI\Renderer\Grid\Grid;
 use Obelaw\UI\Views\Layout\DashboardLayout;
@@ -71,7 +71,7 @@ abstract class GridRender extends Component
         }
 
         $constructor = new ReflectionMethod($this, 'removeRow');
-        $attributes = $constructor->getAttributes(PermissionDelete::class);
+        $attributes = $constructor->getAttributes(Access::class);
 
         foreach ($attributes as $attribute) {
             if (!Permission::verify($attribute->getArguments()[0])) {
