@@ -73,12 +73,14 @@ abstract class GridRender extends Component
         $constructor = new ReflectionMethod($this, 'removeRow');
         $attributes = $constructor->getAttributes(Access::class);
 
+        throw_if(empty($attributes), 'You must add the `Access` attribute to `removeRow` method');
+
         foreach ($attributes as $attribute) {
             if (!Permission::verify($attribute->getArguments()[0])) {
                 return false;
             }
         }
 
-        return false;
+        return true;
     }
 }
