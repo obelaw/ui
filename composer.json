@@ -19,7 +19,7 @@
         "ryangjchandler/blade-tabler-icons": "^2.0",
         "livewire/livewire": "^2.12",
         "jantinnerezo/livewire-alert": "^2.2",
-        "obelaw/o-engine": "^1.0"
+        "obelaw/o-engine": "^1.0@beta"
     },
     "extra": {
         "laravel": {
@@ -27,5 +27,7 @@
                 "Obelaw\\UI\\ObelawUIServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "beta",
+    "prefer-stable": true
 }
