@@ -10,13 +10,8 @@ class HomePage extends HomePageContainer
 {
     public function render()
     {
-        $modules = collect(Bundles::getModules());
-        $mainModules = $modules->where('helper', false)->all();
-        $helperModules = $modules->where('helper', true)->all();
-
         return view('obelaw-ui::pages.home', [
-            'modules' => $mainModules,
-            'helperModules' => $helperModules,
+            'modules' => Bundles::getModulesByGroup(),
         ])->layout(DashboardLayout::class);
     }
 }
