@@ -16,7 +16,7 @@ abstract class ViewRender extends Component
     private $view = null;
     private $buttons = null;
 
-    public function boot()
+    public function booted()
     {
         $view = Bundles::getViews($this->viewId);
 
