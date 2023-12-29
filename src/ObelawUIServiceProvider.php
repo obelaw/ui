@@ -10,6 +10,8 @@ use Obelaw\UI\Components\Fields\SelectField;
 use Obelaw\UI\Components\Fields\TextareaField;
 use Obelaw\UI\Components\Fields\TextField;
 use Obelaw\UI\Components\FormComponent;
+use Obelaw\UI\Components\Groups\LargeGroup;
+use Obelaw\UI\Components\Groups\SmallGroup;
 use Obelaw\UI\Components\MenuComponent;
 use Obelaw\UI\Pipeline\Identifier\Http\Middleware\IdentifierMiddleware;
 use Obelaw\UI\Views\Containers\HomePageContainer;
@@ -76,6 +78,9 @@ class ObelawUIServiceProvider extends ServiceProvider
             TextareaField::class,
             DateField::class,
             CheckboxField::class,
+
+            LargeGroup::class,
+            SmallGroup::class,
         ];
     }
 }
