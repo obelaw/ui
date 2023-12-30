@@ -36,6 +36,7 @@ abstract class WidgetRender extends Component
         return view('obelaw-ui::renderer.widget', [
             'pretitle' => $this->preTitle(),
             'title' => $this->title(),
+            'widget_id' => $this->widgetId,
             'widgets' => $this->widgets,
         ])->layout(DashboardLayout::class);
     }
