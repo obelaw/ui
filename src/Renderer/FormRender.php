@@ -63,9 +63,15 @@ abstract class FormRender extends Component
         ])->layout(DashboardLayout::class);
     }
 
-    public function getInputs()
+    public function getInputs(string $key = null)
     {
-        return $this->validate()['inputs'] ?? [];
+        $inputs = $this->validate()['inputs'] ?? [];
+
+        if ($key) {
+            return $inputs[$key] ?? null;
+        }
+
+        return $inputs;
     }
 
     public function setInputs(array $inputs = [])
