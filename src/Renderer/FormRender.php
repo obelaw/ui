@@ -14,6 +14,9 @@ abstract class FormRender extends Component
     use BootPermission;
     use LivewireAlert;
 
+    public $inputs = [];
+
+    protected $formId = null;
     protected $pretitle = 'Pre Title';
     protected $title = 'Title';
 
@@ -26,7 +29,7 @@ abstract class FormRender extends Component
         $this->fields = Bundles::getForms($this->formId);
 
         foreach ($this->fields as $field) {
-            $this->{$field['model']} = $field['value'] ?? null;
+            $this->{'inputs.' . $field['model']} = $field['value'] ?? null;
         }
     }
 
@@ -45,7 +48,7 @@ abstract class FormRender extends Component
         $data = [];
 
         foreach ($this->fields as $field) {
-            $data[$field['model']] = $field['rules'];
+            $data['inputs.' . $field['model']] = $field['rules'];
         }
 
         return $data;
@@ -56,7 +59,18 @@ abstract class FormRender extends Component
         return view('obelaw-ui::renderer.form', [
             'pretitle' => $this->preTitle(),
             'title' => $this->title(),
+            'formId' => $this->formId,
         ])->layout(DashboardLayout::class);
+    }
+
+    public function getInputs()
+    {
+        return $this->validate()['inputs'] ?? [];
+    }
+
+    public function setInputs(array $inputs = [])
+    {
+        return $this->inputs = $inputs ?? [];
     }
 
     public function submit()
