@@ -2,11 +2,11 @@
 
 namespace Obelaw\UI\Livewire;
 
+use Livewire\Component;
 use Obelaw\Facades\Bundles;
-use Obelaw\UI\Views\Containers\HomePageContainer;
 use Obelaw\UI\Views\Layout\DashboardLayout;
 
-class HomePage extends HomePageContainer
+class HomePage extends Component
 {
     public function render()
     {

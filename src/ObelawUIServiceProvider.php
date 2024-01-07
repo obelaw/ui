@@ -14,7 +14,6 @@ use Obelaw\UI\Components\Groups\LargeGroup;
 use Obelaw\UI\Components\Groups\SmallGroup;
 use Obelaw\UI\Components\MenuComponent;
 use Obelaw\UI\Pipeline\Identifier\Http\Middleware\IdentifierMiddleware;
-use Obelaw\UI\Views\Containers\HomePageContainer;
 use Obelaw\UI\Views\Layout\DashboardLayout;
 
 class ObelawUIServiceProvider extends ServiceProvider
@@ -40,8 +39,6 @@ class ObelawUIServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        $this->app->bind(HomePageContainer::class, config('obelaw.ui.containers.home_page'));
-
         $router->aliasMiddleware('obelawIdentifier', IdentifierMiddleware::class);
 
         $this->loadViewComponentsAs('obelaw', $this->viewComponents());
