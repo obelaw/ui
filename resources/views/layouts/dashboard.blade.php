@@ -91,36 +91,25 @@
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
-                                    @foreach ($modules as $module)
-                                        <a class="dropdown-item" href="{{ route($module['href']) }}">
-                                            @svg('tabler-' . $module['icon'], 'me-1')
-                                            {{ \Illuminate\Support\Str::contains($module['name'], '::') ? __($module['name']) : $module['name'] }}
-                                        </a>
-                                    @endforeach
-
-                                    @if ($helperModules)
-                                        <div class="dropdown-divider"></div>
+                                    @foreach ($moduleGroups as $group => $modules)
                                         <div class="dropend">
                                             <a class="dropdown-item dropdown-toggle" href="#sidebar-error"
                                                 data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button"
                                                 aria-expanded="false">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-lifebuoy me-1" width="24"
+                                                    class="icon icon-tabler icon-tabler-square-dot me-1" width="24"
                                                     height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
                                                     stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                                                    <path d="M15 15l3.35 3.35"></path>
-                                                    <path d="M9 15l-3.35 3.35"></path>
-                                                    <path d="M5.65 5.65l3.35 3.35"></path>
-                                                    <path d="M18.35 5.65l-3.35 3.35"></path>
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path
+                                                        d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+                                                    <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
                                                 </svg>
-                                                Helper Modules
+                                                {{ \Illuminate\Support\Str::of($group)->replace('_', ' ') }}
                                             </a>
                                             <div class="dropdown-menu">
-                                                @foreach ($helperModules as $module)
+                                                @foreach ($modules as $module)
                                                     <a class="dropdown-item" href="{{ route($module['href']) }}">
                                                         @svg('tabler-' . $module['icon'], 'me-1')
                                                         {{ \Illuminate\Support\Str::contains($module['name'], '::') ? __($module['name']) : $module['name'] }}
@@ -128,7 +117,8 @@
                                                 @endforeach
                                             </div>
                                         </div>
-                                    @endif
+                                    @endforeach
+
                                 </div>
                             </li>
                         </ul>

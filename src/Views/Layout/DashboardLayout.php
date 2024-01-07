@@ -13,7 +13,7 @@ class DashboardLayout extends Component
      *
      * @var array
      */
-    public $modules = null;
+    public $moduleGroups = null;
 
     /**
      * The list of helper modules.
@@ -31,9 +31,7 @@ class DashboardLayout extends Component
      */
     public function __construct()
     {
-        $modules = collect(Bundles::getModules());
-        $this->modules = $modules->where('helper', false)->all();
-        $this->helperModules = $modules->where('helper', true)->all();
+        $this->moduleGroups = Bundles::getModulesByGroup();
     }
     /**
      * Get the view / contents that represents the component.
