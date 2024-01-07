@@ -426,8 +426,6 @@
 </body>
 
 <script src="{{ asset('/vendor/obelaw/tabler.min.js') }}"></script>
-<script src="https://tabler.io/demo/dist/js/demo.min.js" defer></script>
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 @livewireScripts
 
