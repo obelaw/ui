@@ -4,7 +4,7 @@
             <a class="nav-link" href="{{ route($link['href']) }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                     @if (isset($link['icon']))
-                        @svg('tabler-' . $link['icon'], 'icon')
+                        <img src="{{ asset($link['icon']) }}" alt="" class="w-4 me-1">
                     @else
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-face-id" width="24"
                             height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -33,7 +33,7 @@
                 data-bs-auto-close="outside" role="button" aria-expanded="false">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                     @if (isset($link['icon']))
-                        @svg('tabler-' . $link['icon'], 'icon')
+                        <img src="{{ asset($link['icon']) }}" alt="" class="w-4 me-1">
                     @else
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -58,7 +58,7 @@
                     @if (hasPermission($_link['permission']))
                         <a class="dropdown-item" href="{{ route($_link['href']) }}">
                             @if (isset($_link['icon']))
-                                @svg('tabler-' . $_link['icon'], 'icon me-1')
+                                <img src="{{ asset($_link['icon']) }}" alt="" class="w-4 me-1">
                             @endif
                             {{ \Illuminate\Support\Str::contains($_link['label'], '::navbar') ? __($_link['label']) : $_link['label'] }}
                         </a>

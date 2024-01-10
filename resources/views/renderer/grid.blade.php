@@ -19,7 +19,7 @@
                             @foreach ($grid->bottoms as $bottom)
                                 @if (isset($bottom['permission']) && hasPermission($bottom['permission']))
                                     <a href="{{ route($bottom['route']) }}" class="btn btn-primary d-none d-sm-inline-block">
-                                        @svg('tabler-' . $bottom['icon'], 'icon')
+                                        <img src="{{ asset($bottom['icon']) }}" alt="" class="me-2">
                                         {{ \Illuminate\Support\Str::contains($bottom['label'], '::grids') ? __($bottom['label']) : $bottom['label'] }}
                                     </a>
                                 @endif

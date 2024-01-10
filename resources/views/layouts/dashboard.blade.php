@@ -111,7 +111,8 @@
                                             <div class="dropdown-menu">
                                                 @foreach ($modules as $module)
                                                     <a class="dropdown-item" href="{{ route($module['href']) }}">
-                                                        @svg('tabler-' . $module['icon'], 'me-1')
+                                                        <img src="{{ asset($module['icon']) }}" alt=""
+                                                            class="w-4 bg-white me-2 rounded-2">
                                                         {{ \Illuminate\Support\Str::contains($module['name'], '::') ? __($module['name']) : $module['name'] }}
                                                     </a>
                                                 @endforeach
@@ -314,7 +315,7 @@
                                     <a class="nav-link">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             @if (isset($_module['icon']))
-                                                @svg('tabler-' . $_module['icon'], 'icon')
+                                                <img src="{{ asset($_module['icon']) }}" alt="">
                                             @else
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                     class="icon icon-tabler icon-tabler-face-id" width="24"

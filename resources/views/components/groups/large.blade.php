@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <div class="py-3">
                                 <p class="m-0">
-                                    @svg('tabler-' . $module['icon'], 'w-7 h-7')
+                                    <img src="{{ asset($module['icon']) }}" alt="" width="90px" height="auto">
                                 </p>
                                 <p class="m-0 mt-3 h3">
                                     {{ Str::contains($module['name'], '::') ? __($module['name']) : $module['name'] }}

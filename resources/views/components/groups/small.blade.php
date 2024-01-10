@@ -10,8 +10,8 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-auto">
-                                <span class="bg-white text-black avatar">
-                                    @svg('tabler-' . $module['icon'], 'w-5 h-5')
+                                <span class="bg-white text-black avatar p-1">
+                                    <img src="{{ asset($module['icon']) }}" alt="">
                                 </span>
                             </div>
                             <div class="col">
