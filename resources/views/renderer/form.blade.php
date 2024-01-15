@@ -12,6 +12,16 @@
                         {{ $title }}
                     </h2>
                 </div>
+                <!-- Page title actions -->
+                <div class="col-auto ms-auto d-print-none">
+                    <div class="btn-list">
+                        @empty(!$actions)
+                            @foreach ($actions as $action)
+                                @livewire($action)
+                            @endforeach
+                        @endempty
+                    </div>
+                </div>
             </div>
         </div>
     </div>

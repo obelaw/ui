@@ -15,6 +15,7 @@ abstract class FormRender extends Component
     use LivewireAlert;
 
     public $inputs = [];
+    public $actions = [];
 
     protected $formId = null;
     protected $pretitle = 'Pre Title';
@@ -26,7 +27,8 @@ abstract class FormRender extends Component
     {
         $this->bootPermission();
 
-        $this->fields = Bundles::getForms($this->formId);
+        $this->fields = Bundles::getFormFields($this->formId); // TODO remove this line
+        $this->actions = Bundles::getFormActions($this->formId);
 
         foreach ($this->fields as $field) {
             $this->{'inputs.' . $field['model']} = $field['value'] ?? null;

@@ -19,9 +19,9 @@ class FormComponent extends Component
      */
     public function __construct($id = null)
     {
-        $this->fields = Bundles::getForms($id);
+        $this->fields = Bundles::getFormFields($id);
     }
-
+    
     /**
      * Get the view / contents that represents the component.
      */
