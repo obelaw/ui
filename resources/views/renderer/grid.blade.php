@@ -16,13 +16,13 @@
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
 
-                        @if ($grid->bottoms || $grid->actions)
+                        @if ($bottoms || $actions)
                             <div class="dropdown">
                                 <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown">Open bottoms and
                                     actions</a>
                                 <div class="dropdown-menu">
-                                @empty(!$grid->bottoms)
-                                    @foreach ($grid->bottoms as $bottom)
+                                @empty(!$bottoms)
+                                    @foreach ($bottoms as $bottom)
                                         @if (isset($bottom['permission']) && hasPermission($bottom['permission']))
                                             <a href="{{ route($bottom['route']) }}" class="dropdown-item">
                                                 <img src="{{ asset($bottom['icon']) }}" alt=""
@@ -32,10 +32,10 @@
                                         @endif
                                     @endforeach
                                 @endempty
-                            @empty(!$grid->actions)
+                            @empty(!$actions)
                                 <div class="hr-text">actions</div>
                                 <div class="p-2">
-                                    @foreach ($grid->actions as $action)
+                                    @foreach ($actions as $action)
                                         @livewire($action)
                                     @endforeach
                                 </div>
@@ -56,7 +56,7 @@
         <div class="col-12">
             <div class="card mb-3">
 
-                @if ($grid->getRows()->isEmpty())
+                @if ($table->getRows()->isEmpty())
                     <div class="empty">
                         <div class="empty-icon">
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -77,20 +77,20 @@
                     </div>
                 @endif
 
-                @if (!$grid->getRows()->isEmpty())
+                @if (!$table->getRows()->isEmpty())
                     <div class="table-responsive">
 
                         <table class="table table-vcenter card-table">
                             <thead>
                                 <tr>
-                                    @foreach ($grid->getLabels() as $label)
+                                    @foreach ($table->getLabels() as $label)
                                         <th>{{ $label }}</th>
                                     @endforeach
                                     <th width="21%"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($grid->getRows() as $row)
+                                @foreach ($table->getRows() as $row)
                                     <tr>
                                         @foreach ($row['columns'] as $column)
                                             <td>{!! $column !!}</td>
@@ -122,7 +122,7 @@
                 @endif
             </div>
 
-            {{ $grid->getLinks() }}
+            {{ $table->getLinks() }}
         </div>
     </div>
 </div>

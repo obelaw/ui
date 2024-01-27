@@ -9,20 +9,18 @@ class Table
 {
     public $labels = [];
     public $dataKeys = [];
-    public $bottoms = null;
-    public $actions = null;
     public $setCTAs = null;
+    public $grid = null;
     public $model = null;
     public $where = null;
-    public $grid = null;
     public $filter = null;
     public $links = null;
 
-    public function __construct($model, $where = null, $grid = null)
+    public function __construct($grid, $model, $where = null)
     {
+        $this->grid = $grid;
         $this->model = $model;
         $this->where = $where;
-        $this->grid = $grid;
     }
 
     public function addColumn($label, $dataKey, $filter = null)
@@ -41,16 +39,6 @@ class Table
     public function getDataKeys()
     {
         return $this->dataKeys;
-    }
-
-    public function setBottoms($bottoms)
-    {
-        $this->bottoms = $bottoms;
-    }
-
-    public function setActions($actions)
-    {
-        $this->actions = $actions;
     }
 
     public function setCTAs($calls)

@@ -18,13 +18,12 @@ abstract class GridRender extends Component
     use BootPermission;
     use WithPagination;
 
-    public $actions = [];
-
     protected $pretitle = 'Pre Title';
     protected $title = 'Title';
     protected $paginationTheme = 'bootstrap';
 
     private $grid = null;
+    private $tableRender = null;
 
     public function boot()
     {
@@ -32,20 +31,22 @@ abstract class GridRender extends Component
 
         $grid = Bundles::getGrids($this->gridId);
 
-        $gridBuild = Grid::model($grid['model'], $grid['where'], $this);
+        $gridRender = new Grid($this);
+        $gridRender->setModel($grid['model']);
+        $gridRender->setWhere($grid['where']);
+        $gridRender->setBottoms($grid['buttons']);
+        $gridRender->setActions($grid['actions']);
 
-        $gridBuild->setBottoms($grid['buttons']);
-
-        $gridBuild->setActions($grid['actions']);
+        $tableRender = $gridRender->table();
+        $tableRender->setCTAs($grid['CTAs']);
+        $tableRender->initFilter($grid['filter']);
 
         foreach ($grid['rows'] as $row) {
-            $gridBuild->addColumn($row['label'], $row['dataKey'], $row['filter']);
+            $tableRender->addColumn($row['label'], $row['dataKey'], $row['filter']);
         }
 
-        $gridBuild->setCTAs($grid['CTAs']);
-        $gridBuild->initFilter($grid['filter']);
-
-        $this->grid = $gridBuild;
+        $this->grid = $gridRender;
+        $this->tableRender = $tableRender;
     }
 
     public function preTitle()
@@ -63,7 +64,9 @@ abstract class GridRender extends Component
         return view('obelaw-ui::renderer.grid', [
             'pretitle' => $this->preTitle(),
             'title' => $this->title(),
-            'grid' => $this->grid,
+            'bottoms' => $this->grid->bottoms,
+            'actions' => $this->grid->actions,
+            'table' => $this->tableRender,
             'canRemoveRow' => $this->canRemoveRow(),
         ])->layout(DashboardLayout::class);
     }
