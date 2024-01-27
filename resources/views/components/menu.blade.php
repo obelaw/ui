@@ -55,13 +55,35 @@
             </a>
             <div class="dropdown-menu">
                 @foreach ($link['sublinks'] as $_link)
-                    @if (hasPermission($_link['permission']))
-                        <a class="dropdown-item" href="{{ route($_link['href']) }}">
-                            @if (isset($_link['icon']))
-                                <img src="{{ asset($_link['icon']) }}" alt="" class="w-4 me-1">
-                            @endif
-                            {{ \Illuminate\Support\Str::contains($_link['label'], '::navbar') ? __($_link['label']) : $_link['label'] }}
-                        </a>
+                    @if (!isset($_link['thirdlinks']))
+                        @if (hasPermission($_link['permission']))
+                            <a class="dropdown-item" href="{{ route($_link['href']) }}">
+                                @if (isset($_link['icon']))
+                                    <img src="{{ asset($_link['icon']) }}" alt="" class="w-4 me-1">
+                                @endif
+                                {{ \Illuminate\Support\Str::contains($_link['label'], '::navbar') ? __($_link['label']) : $_link['label'] }}
+                            </a>
+                        @endif
+                    @else
+                        <div class="dropend">
+                            <a class="dropdown-item dropdown-toggle" href="#sidebar-error" data-bs-toggle="dropdown"
+                                data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                @if (isset($_link['icon']))
+                                    <img src="{{ asset($_link['icon']) }}" alt="" class="w-4 me-1">
+                                @endif
+                                {{ \Illuminate\Support\Str::contains($_link['label'], '::navbar') ? __($_link['label']) : $_link['label'] }}
+                            </a>
+                            <div class="dropdown-menu">
+                                @foreach ($_link['thirdlinks'] as $__link)
+                                    <a href="{{ route($__link['href']) }}" class="dropdown-item">
+                                        @if (isset($__link['icon']))
+                                            <img src="{{ asset($__link['icon']) }}" alt="" class="w-4 me-1">
+                                        @endif
+                                        {{ \Illuminate\Support\Str::contains($__link['label'], '::navbar') ? __($__link['label']) : $__link['label'] }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
                     @endif
                 @endforeach
             </div>
