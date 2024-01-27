@@ -10,16 +10,19 @@ class Table
     public $labels = [];
     public $dataKeys = [];
     public $bottoms = null;
+    public $actions = null;
     public $setCTAs = null;
     public $model = null;
     public $where = null;
+    public $grid = null;
     public $filter = null;
     public $links = null;
 
-    public function __construct($model, $where = null)
+    public function __construct($model, $where = null, $grid = null)
     {
         $this->model = $model;
         $this->where = $where;
+        $this->grid = $grid;
     }
 
     public function addColumn($label, $dataKey, $filter = null)
@@ -45,6 +48,11 @@ class Table
         $this->bottoms = $bottoms;
     }
 
+    public function setActions($actions)
+    {
+        $this->actions = $actions;
+    }
+
     public function setCTAs($calls)
     {
         $this->setCTAs = $calls;
@@ -64,9 +72,16 @@ class Table
 
     public function getRows()
     {
+
+        // dd($this->grid, method_exists($this->grid, 'where'));
+
         $model = (new $this->model)->where(function (Builder $query) {
             if ($this->where) {
                 $query->where((new $this->where)->where($query));
+            }
+
+            if (method_exists($this->grid, 'where')) {
+                $query->where($this->grid->where($query));
             }
         })->paginate(25);
 

@@ -18,6 +18,8 @@ abstract class GridRender extends Component
     use BootPermission;
     use WithPagination;
 
+    public $actions = [];
+
     protected $pretitle = 'Pre Title';
     protected $title = 'Title';
     protected $paginationTheme = 'bootstrap';
@@ -30,9 +32,11 @@ abstract class GridRender extends Component
 
         $grid = Bundles::getGrids($this->gridId);
 
-        $gridBuild = Grid::model($grid['model'], $grid['where']);
+        $gridBuild = Grid::model($grid['model'], $grid['where'], $this);
 
         $gridBuild->setBottoms($grid['buttons']);
+
+        $gridBuild->setActions($grid['actions']);
 
         foreach ($grid['rows'] as $row) {
             $gridBuild->addColumn($row['label'], $row['dataKey'], $row['filter']);
