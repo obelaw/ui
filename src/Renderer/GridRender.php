@@ -9,6 +9,7 @@ use Obelaw\Facades\Bundles;
 use Obelaw\Framework\ACL\Permission;
 use Obelaw\UI\Permissions\Access;
 use Obelaw\UI\Permissions\Traits\BootPermission;
+use Obelaw\UI\Renderer\Grid\Export;
 use Obelaw\UI\Renderer\Grid\Grid;
 use Obelaw\UI\Views\Layout\DashboardLayout;
 use ReflectionMethod;
@@ -69,6 +70,11 @@ abstract class GridRender extends Component
             'table' => $this->tableRender,
             'canRemoveRow' => $this->canRemoveRow(),
         ])->layout(DashboardLayout::class);
+    }
+
+    public function export()
+    {
+        return new Export($this->grid);
     }
 
     private function canRemoveRow()

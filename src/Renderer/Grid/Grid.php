@@ -17,11 +17,21 @@ class Grid
     ) {
     }
 
+    public function getModel()
+    {
+        return $this->model;
+    }
+
     public function setModel($model)
     {
         $this->model = $model;
 
         return $this;
+    }
+
+    public function getWhere()
+    {
+        return $this->where;
     }
 
     public function setWhere($where)
