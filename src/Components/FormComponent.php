@@ -9,6 +9,7 @@ use Obelaw\Facades\Bundles;
 class FormComponent extends Component
 {
     public $fields = [];
+    public $tabs = [];
 
     /**
      * Create the component instance.
@@ -20,6 +21,7 @@ class FormComponent extends Component
     public function __construct($id = null)
     {
         $this->fields = Bundles::getFormFields($id);
+        $this->tabs = Bundles::getFormTabs($id);
     }
     
     /**
