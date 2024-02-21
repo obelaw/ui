@@ -97,4 +97,9 @@ abstract class FormRender extends Component
             'timerProgressBar' => true,
         ]);
     }
+
+    protected function pushFlash($type = 'success', $massage = 'Massage')
+    {
+        session()->flash('obelaw-' . $type, $massage);
+    }
 }
