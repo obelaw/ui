@@ -30,6 +30,10 @@ abstract class FormRender extends Component
         $this->fields = Bundles::getFormFields($this->formId); // TODO remove this line
         $this->actions = Bundles::getFormActions($this->formId);
 
+        foreach (Bundles::getFormTabs($this->formId) as $tab) {
+            $this->fields = array_merge($this->fields, $tab['fields']);
+        }
+
         foreach ($this->fields as $field) {
             $this->{'inputs.' . $field['model']} = $field['value'] ?? null;
         }
