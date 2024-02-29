@@ -81,9 +81,13 @@ class Table
             $rows['primary'] = $row->id;
 
             foreach ($this->getDataKeys() as $column) {
-                $rows['columns'][] = (!is_null($column['filter'])) ?
-                    call_user_func_array([$this->filter, $column['filter']], [$row->{$column['key']}, $row]) :
-                    $row->{$column['key']};
+                if (!is_null($column['filter']) && is_array($column['filter'])) {
+                    $rows['columns'][] = call_user_func_array([new $column['filter'][0], $column['filter'][1]], [$row->{$column['key']}, $row]);
+                } elseif (!is_null($column['filter']) && is_string($column['filter'])) {
+                    $rows['columns'][] = call_user_func_array([$this->grid, $column['filter']], [$row->{$column['key']}, $row]);
+                } else {
+                    $rows['columns'][] = $row->{$column['key']};
+                }
             }
 
             $rows['calls'] = $this->setCTAs;
