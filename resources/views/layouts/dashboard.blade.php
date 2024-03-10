@@ -427,6 +427,7 @@
 </body>
 
 <script src="{{ asset('/vendor/obelaw/tabler.min.js') }}"></script>
+<script src="{{ asset('/vendor/obelaw/apexcharts.min.js') }}" defer></script>
 
 @livewireScripts
 

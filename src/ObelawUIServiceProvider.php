@@ -13,6 +13,7 @@ use Obelaw\UI\Components\FormComponent;
 use Obelaw\UI\Components\Groups\LargeGroup;
 use Obelaw\UI\Components\Groups\SmallGroup;
 use Obelaw\UI\Components\MenuComponent;
+use Obelaw\UI\Components\Reporting\ChartComponent;
 use Obelaw\UI\Pipeline\Identifier\Http\Middleware\IdentifierMiddleware;
 use Obelaw\UI\Views\Layout\DashboardLayout;
 
@@ -39,6 +40,8 @@ class ObelawUIServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
+        // Livewire::component('obelaw-tool-reporting-chart', ChartComponent::class);
+
         $router->aliasMiddleware('obelawIdentifier', IdentifierMiddleware::class);
 
         $this->loadViewComponentsAs('obelaw', $this->viewComponents());
@@ -78,6 +81,8 @@ class ObelawUIServiceProvider extends ServiceProvider
 
             LargeGroup::class,
             SmallGroup::class,
+
+            ChartComponent::class,
         ];
     }
 }
