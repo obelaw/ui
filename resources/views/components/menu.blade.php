@@ -1,5 +1,5 @@
 @foreach ($links as $link)
-    @if (isset($link['href']) && hasPermission($link['permission']))
+    @if (isset($link['href']) && (is_null($link['permission']) || hasPermission($link['permission'])))
         <li class="nav-item">
             <a class="nav-link" href="{{ route($link['href']) }}">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -27,7 +27,7 @@
         </li>
     @endif
 
-    @if (isset($link['sublinks']) && hasPermission($link['permission']))
+    @if (isset($link['sublinks']) && (is_null($link['permission']) || hasPermission($link['permission'])))
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
                 data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -56,7 +56,7 @@
             <div class="dropdown-menu">
                 @foreach ($link['sublinks'] as $_link)
                     @if (!isset($_link['thirdlinks']))
-                        @if (hasPermission($_link['permission']))
+                        @if ((is_null($link['permission']) || hasPermission($link['permission'])))
                             <a class="dropdown-item" href="{{ route($_link['href']) }}">
                                 @if (isset($_link['icon']))
                                     <img src="{{ asset($_link['icon']) }}" alt="" class="w-4 me-1">
