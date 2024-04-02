@@ -56,7 +56,7 @@
             <div class="dropdown-menu">
                 @foreach ($link['sublinks'] as $_link)
                     @if (!isset($_link['thirdlinks']))
-                        @if ((is_null($link['permission']) || hasPermission($link['permission'])))
+                        @if ((is_null($_link['permission']) || hasPermission($_link['permission'])))
                             <a class="dropdown-item" href="{{ route($_link['href']) }}">
                                 @if (isset($_link['icon']))
                                     <img src="{{ asset($_link['icon']) }}" alt="" class="w-4 me-1">
