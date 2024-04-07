@@ -16,6 +16,7 @@ abstract class FormRender extends Component
 
     public $inputs = [];
     public $actions = [];
+    public $choices = [];
 
     protected $formId = null;
     protected $pretitle = 'Pre Title';
@@ -66,6 +67,8 @@ abstract class FormRender extends Component
             'pretitle' => $this->preTitle(),
             'title' => $this->title(),
             'formId' => $this->formId,
+            'fields' => $this->fields,
+            'choices' => $this->choices,
         ])->layout(DashboardLayout::class);
     }
 
@@ -105,5 +108,10 @@ abstract class FormRender extends Component
     protected function pushFlash($type = 'success', $massage = 'Massage')
     {
         session()->flash('obelaw-' . $type, $massage);
+    }
+
+    public function setChoices(string $model, array $option)
+    {
+        $this->choices[$model] = $option;
     }
 }

@@ -10,6 +10,7 @@ class FormComponent extends Component
 {
     public $fields = [];
     public $tabs = [];
+    public $choices = [];
 
     /**
      * Create the component instance.
@@ -18,12 +19,13 @@ class FormComponent extends Component
      * @param  string  $message
      * @return void
      */
-    public function __construct($id = null)
+    public function __construct($id, $fields = null, $choices = null)
     {
-        $this->fields = Bundles::getFormFields($id);
+        $this->fields = $fields ?? Bundles::getFormFields($id);
         $this->tabs = Bundles::getFormTabs($id);
+        $this->choices = $choices;
     }
-    
+
     /**
      * Get the view / contents that represents the component.
      */
