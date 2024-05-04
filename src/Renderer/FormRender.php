@@ -24,7 +24,7 @@ abstract class FormRender extends Component
 
     private $fields = [];
 
-    public function boot()
+    public function booted()
     {
         $this->bootPermission();
 
