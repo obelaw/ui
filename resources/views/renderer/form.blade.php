@@ -30,7 +30,7 @@
         <div class="container-xl">
             <div class="row row-cards">
                 <div class="col-12">
-                    <x-obelaw-form-component id="{{ $formId }}" :fields="$fields" :choices="$choices" />
+                    <x-obelaw-form-component id="{{ $formId }}" :choices="$choices" />
                 </div>
             </div>
         </div>
