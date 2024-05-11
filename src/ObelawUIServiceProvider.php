@@ -2,6 +2,8 @@
 
 namespace Obelaw\UI;
 
+use Composer\InstalledVersions;
+use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Obelaw\Facades\Bundles;
@@ -11,7 +13,6 @@ use Obelaw\UI\Compiles\Scan\Appends\NavbarAppendsCompile;
 use Obelaw\UI\Compiles\Scan\Appends\ViewsAppendsCompile;
 use Obelaw\UI\Compiles\Scan\Modules\FormsCompile;
 use Obelaw\UI\Compiles\Scan\Modules\GridsCompile;
-use Obelaw\UI\Compiles\Scan\Modules\InfoCompile;
 use Obelaw\UI\Compiles\Scan\Modules\MigrationsCompile;
 use Obelaw\UI\Compiles\Scan\Modules\NavbarCompile;
 use Obelaw\UI\Compiles\Scan\Modules\RoutesApiCompile;
@@ -73,6 +74,8 @@ class ObelawUIServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'obelaw-ui');
 
         if ($this->app->runningInConsole()) {
+            $this->bootAboutCommand();
+
             $this->publishes([
                 __DIR__ . '/../config/ui.php' => config_path('obelaw/ui.php'),
             ]);
@@ -138,5 +141,14 @@ class ObelawUIServiceProvider extends ServiceProvider
 
             ChartComponent::class,
         ];
+    }
+
+    private function bootAboutCommand()
+    {
+        if (class_exists(AboutCommand::class) && class_exists(InstalledVersions::class)) {
+            AboutCommand::add('Obelaw Environment', [
+                'Obelaw UI Version' => InstalledVersions::getPrettyVersion('obelaw/ui'),
+            ]);
+        }
     }
 }
