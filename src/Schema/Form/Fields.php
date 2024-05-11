@@ -18,7 +18,6 @@ class Fields
             FieldType::DATE => $this->handleDate($attributes),
             FieldType::SELECT => $this->handleSelect($attributes),
             FieldType::CHECKBOX => $this->handleCheckbox($attributes),
-            FieldType::REFERENCE => $this->handleReference($attributes),
         };
 
         $this->fields[] = $attributes;
@@ -74,6 +73,7 @@ class Fields
     private function handleFile($attributes)
     {
         $attributes['type'] = 'file';
+        $attributes['multiple'] = false;
         return $this->falterAttributes($attributes);
     }
 
@@ -105,11 +105,5 @@ class Fields
     private function falterAttributes($attributes)
     {
         return $attributes;
-    }
-
-    private function handleReference($attributes)
-    {
-        $attributes['type'] = 'reference';
-        return $this->falterAttributes($attributes);
     }
 }

@@ -11,6 +11,11 @@
                     :hint="$field['hint']" :required="str_contains($field['rules'], 'required')" />
             @endif
 
+            @if ($field['type'] == 'file')
+                <x-obelaw-file-field label="{{ $field['label'] }}" model="{{ 'inputs.' . $field['model'] }}"
+                    :hint="$field['hint']" :required="str_contains($field['rules'], 'required')" :multiple="$field['multiple']" />
+            @endif
+
             @if ($field['type'] == 'select')
                 <x-obelaw-select-field label="{{ $field['label'] }}" model="{{ 'inputs.' . $field['model'] }}"
                     :options="!empty($field['options']) ? $field['options'] : $choices[$field['model']] ?? []" :hint="$field['hint']" :required="str_contains($field['rules'], 'required')" :multiple="$field['multiple']" :selected="$field['selected'] ?? false" />

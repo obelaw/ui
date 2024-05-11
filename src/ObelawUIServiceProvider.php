@@ -28,6 +28,7 @@ use Obelaw\UI\Compiles\Scan\Plugins\RoutesDashboardPluginCompile;
 use Obelaw\UI\Compiles\Scan\Plugins\ViewsPluginCompile;
 use Obelaw\UI\Components\Fields\CheckboxField;
 use Obelaw\UI\Components\Fields\DateField;
+use Obelaw\UI\Components\Fields\FileField;
 use Obelaw\UI\Components\Fields\SelectField;
 use Obelaw\UI\Components\Fields\TextareaField;
 use Obelaw\UI\Components\Fields\TextField;
@@ -126,6 +127,7 @@ class ObelawUIServiceProvider extends ServiceProvider
             FormComponent::class,
             // Fields
             TextField::class,
+            FileField::class,
             SelectField::class,
             TextareaField::class,
             DateField::class,
